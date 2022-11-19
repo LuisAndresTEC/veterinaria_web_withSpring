@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Veterinaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Lista de Expedientes</h1>
+    <a th:href="@{/nuevoExpediente}" class="btn btn-primary">Nuevo</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Mascota</td>
+            <td>Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="expediente:${expedientes}">
+            <td th:text="${expediente.id}"></td>
+            <td th:text="${expediente.mascota.nombre}"></td>
+            <td>
+                <a th:href="@{/editarExpediente/}+${expediente.id}" class="btn btn-warning">Editar</a>
+                <a th:onclick="eliminarExpediente([[${expediente.id}]])" class= "btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+    <br><br><br><br>
+    <a th:href="@{/veterinaria}" class="btn btn-primary btn-lg">Menu Principal</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="funciones.js"></script>
+</body>
+</html>
